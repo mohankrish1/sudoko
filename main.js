@@ -1,13 +1,39 @@
-
-const input = document.querySelector('input');
+const enter=document.querySelector('.initialise');
 
 let sudoku = '  6     2 81 4293 25   34  4 8 1  76  2   8  17  6 3 9  35   94 9732 51 5     7  ';
 
-input.addEventListener('change', (e) => {
+enter.addEventListener('click',()=>{
+   const newDiv=document.createElement('div');
+   newDiv.style.width="50%";
+   newDiv.style.position="absolute";
+   newDiv.style.padding="2em";
+   newDiv.style.zIndex="2";
+   newDiv.style.backgroundColor="white";
+   const head=document.createElement('h2');
+   head.textContent="Enter Suduko String Board";
+   newDiv.appendChild(head);
+   const para=document.createElement('p');
+   para.textContent="Valid strings could contain dots and numbers";
+   newDiv.appendChild(para);
+   const input=document.createElement('input');
+   input.style.width="90%";
+   input.classList.add('input')
+   newDiv.appendChild(input);
+   input.addEventListener('change', (e) => {
     sudoku = e.target.value;
     sudokuArray = sudoku.split('');
     init();
+    });
+    const button=document.createElement('button');
+   button.textContent="Submit";
+   newDiv.appendChild(button);
+   const puzzle=document.querySelector('.puzzle');
+   puzzle.insertBefore(newDiv,puzzle.firstChild);
+   button.addEventListener('click',()=>{
+    puzzle.removeChild(puzzle.firstChild);
+   })
 });
+
 
 const compute = document.querySelector('.solve');
 
